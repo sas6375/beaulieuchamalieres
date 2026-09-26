@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cabinet partagé Beaulieu – Chamalières</title>
+  <meta name="description" content="Espace de bureau à Chamalières (Beaulieu) à partager entre professions libérales : rejoignez le groupe et choisissez vos services communs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top">Cabinet partagé <span>Beaulieu</span></a>
+      <nav>
+        <a href="#concept">Le concept</a>
+        <a href="#local">Le local</a>
+        <a href="#groupe">Le groupe</a>
+        <a class="btn btn-small" href="#rejoindre">Je suis intéressé·e</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow" data-bind="bureau.quartier"></p>
+          <h1>Partagez un cabinet à Chamalières, <em>divisez le loyer</em>, mutualisez les services.</h1>
+          <p class="lead">Psychologues, ostéopathes, coachs, avocats, consultants… Plutôt que de louer seul·e, rejoignez un petit groupe de professionnels libéraux qui se constitue au fur et à mesure autour de ce local.</p>
+          <div class="hero-cta">
+            <a class="btn" href="#rejoindre">Rejoindre le groupe</a>
+            <a class="btn btn-ghost" href="#groupe">Voir qui est déjà intéressé</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Avancement du groupe">
+          <p class="hero-card-label">Groupe en formation</p>
+          <p class="hero-card-count"><strong data-bind="groupe.count">0</strong> / <span data-bind="objectifGroupe"></span> professionnels</p>
+          <div class="progress"><div class="progress-bar" data-progress></div></div>
+          <p class="hero-card-note" data-hero-note></p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="concept" class="section">
+      <div class="wrap">
+        <h2>Comment ça marche</h2>
+        <ol class="steps">
+          <li>
+            <span class="step-num">1</span>
+            <h3>Vous vous signalez</h3>
+            <p>Sans engagement : indiquez votre profession, les jours qui vous intéressent et les services communs que vous souhaitez.</p>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <h3>Le groupe se constitue</h3>
+            <p>Chaque nouvel intéressé apparaît (anonymement, par profession) sur cette page. Vous voyez le collectif grandir et les besoins converger.</p>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <h3>On s'organise ensemble</h3>
+            <p>Dès que le groupe est suffisant, une rencontre sur place est organisée pour répartir les pièces, les créneaux et les frais.</p>
+          </li>
+        </ol>
+        <div class="benefits">
+          <div><h3>Un loyer partagé</h3><p>Le coût du local est réparti entre les occupants, au prorata de l'usage.</p></div>
+          <div><h3>Des services mutualisés</h3><p>Accueil, ménage, internet, salle d'attente… à plusieurs, ils deviennent abordables.</p></div>
+          <div><h3>Un réseau de proximité</h3><p>Des professions complémentaires sous le même toit, c'est aussi des recommandations croisées.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="local" class="section section-alt">
+      <div class="wrap">
+        <h2>Le local</h2>
+        <div class="local-grid">
+          <div>
+            <p class="local-title" data-bind="bureau.titre"></p>
+            <dl class="facts" data-facts></dl>
+            <ul class="atouts" data-atouts></ul>
+            <p><a class="link" data-annonce target="_blank" rel="noopener">Voir l'annonce complète ↗</a></p>
+          </div>
+          <div class="simu" data-simu>
+            <h3>Combien ça me coûterait ?</h3>
+            <p class="muted">Estimation à parts égales, charges comprises.</p>
+            <label for="simu-n">Nombre de professionnels : <strong data-simu-n>3</strong></label>
+            <input id="simu-n" type="range" min="1" max="8" value="3">
+            <p class="simu-result"><strong data-simu-result>—</strong><span> € / mois par personne</span></p>
+            <p class="muted small">Le montant réel dépendra de la répartition des pièces, des créneaux et des services retenus.</p>
+          </div>
+        </div>
+        <div class="photos" data-photos></div>
+      </div>
+    </section>
+
+    <section id="groupe" class="section">
+      <div class="wrap">
+        <h2>Le groupe en formation</h2>
+        <p class="lead">Les professionnels déjà intéressés, affichés uniquement par profession.</p>
+        <div class="members" data-members></div>
+        <div class="tally-wrap" data-tally-wrap>
+          <h3>Services les plus demandés</h3>
+          <ul class="tally" data-tally></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="rejoindre" class="section section-alt">
+      <div class="wrap narrow">
+        <h2>Je suis intéressé·e</h2>
+        <p class="lead">Aucun engagement : cela nous permet de constituer le groupe et de vous recontacter.</p>
+
+        <form id="form" novalidate>
+          <fieldset>
+            <legend>Vous</legend>
+            <div class="row">
+              <label>Prénom et nom<input name="nom" required autocomplete="name"></label>
+              <label>Profession
+                <select name="profession" required data-professions><option value="">Choisir…</option></select>
+              </label>
+            </div>
+            <label class="hidden" data-autre>Précisez votre profession<input name="profession_autre"></label>
+            <div class="row">
+              <label>E-mail<input name="email" type="email" required autocomplete="email"></label>
+              <label>Téléphone <span class="opt">(facultatif)</span><input name="telephone" type="tel" autocomplete="tel"></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Votre besoin</legend>
+            <p class="field-label">Jours de présence souhaités</p>
+            <div class="chips">
+              <label><input type="checkbox" name="jours" value="Lun"><span>Lun</span></label>
+              <label><input type="checkbox" name="jours" value="Mar"><span>Mar</span></label>
+              <label><input type="checkbox" name="jours" value="Mer"><span>Mer</span></label>
+              <label><input type="checkbox" name="jours" value="Jeu"><span>Jeu</span></label>
+              <label><input type="checkbox" name="jours" value="Ven"><span>Ven</span></label>
+              <label><input type="checkbox" name="jours" value="Sam"><span>Sam</span></label>
+            </div>
+            <div class="row">
+              <label>Type d'usage
+                <select name="usage">
+                  <option>Bureau / cabinet dédié</option>
+                  <option>Bureau partagé par créneaux</option>
+                  <option>Salle ponctuelle (ateliers, réunions)</option>
+                </select>
+              </label>
+              <label>Budget mensuel envisagé
+                <select name="budget">
+                  <option value="">Je ne sais pas encore</option>
+                  <option>Moins de 200 €</option>
+                  <option>200 – 400 €</option>
+                  <option>400 – 600 €</option>
+                  <option>Plus de 600 €</option>
+                </select>
+              </label>
+            </div>
+            <label>Date d'arrivée souhaitée
+              <select name="date">
+                <option>Dès que possible</option>
+                <option>D'ici 3 mois</option>
+                <option>D'ici 6 mois</option>
+                <option>Plus tard</option>
+              </select>
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Services communs souhaités</legend>
+            <p class="muted small">Cochez tout ce qui vous intéresse — les services seront retenus selon les souhaits du groupe.</p>
+            <div class="services" data-services></div>
+            <label>Autre idée de service partagé ?<input name="service_autre" placeholder="ex. vestiaire, matériel médical commun…"></label>
+          </fieldset>
+
+          <fieldset>
+            <label>Un mot sur votre activité <span class="opt">(facultatif)</span>
+              <textarea name="message" rows="3"></textarea>
+            </label>
+            <label class="check"><input type="checkbox" name="affichage" value="oui" checked>
+              <span>J'accepte que ma profession (sans mon nom) apparaisse dans « Le groupe en formation ».</span></label>
+            <label class="check"><input type="checkbox" name="rgpd" required>
+              <span>J'accepte d'être recontacté·e au sujet de ce local. Mes données ne sont utilisées qu'à cette fin.</span></label>
+          </fieldset>
+
+          <p class="form-error" data-error role="alert"></p>
+          <button class="btn btn-wide" type="submit">Envoyer ma candidature</button>
+        </form>
+
+        <div class="thanks hidden" data-thanks>
+          <h3>Merci !</h3>
+          <p>Votre intérêt a bien été enregistré. Vous serez recontacté·e dès que le groupe se précise.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>Cabinet partagé Beaulieu — Chamalières (63400)</p>
+      <p data-contact></p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
