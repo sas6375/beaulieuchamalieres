@@ -15,11 +15,11 @@ Tout se modifie dans **`config.js`** :
 
 | Ce qu'il faut remplir | Clé |
 |---|---|
-| Surface, nombre de pièces, loyer, charges, adresse | `bureau.*` |
+| Surface, étage, loyer charges comprises, parking, adresse | `bureau.*` |
 | Photos (déposez-les dans `assets/`) | `bureau.photos` |
 | E-mail qui reçoit les candidatures | `contact.email` |
 | Nombre de professionnels visé | `objectifGroupe` |
-| Liste des services proposés | `services` |
+| Liste des services proposés (`surPlace: true` = déjà présent dans le local) | `services` |
 
 Une valeur laissée à `null` n'est pas affichée. Le simulateur de coût apparaît dès que le loyer est renseigné.
 

@@ -36,9 +36,10 @@
   const B = C.bureau;
   const facts = [
     ["Surface", B.surfaceM2 && `${B.surfaceM2} m²`],
-    ["Pièces / cabinets", B.nombreBureaux],
-    ["Loyer HC", B.loyerMensuelHC && `${euros(B.loyerMensuelHC)} € / mois`],
-    ["Charges", B.chargesMensuelles && `${euros(B.chargesMensuelles)} € / mois`],
+    ["Loyer CC (TTC)", B.loyerMensuelCC && `${euros(B.loyerMensuelCC)} € / mois`],
+    ["Étage", B.etage],
+    ["Bureaux", B.nombreBureaux],
+    ["Parking", B.parking],
     ["Disponibilité", B.disponibilite],
     ["Adresse", B.adresse],
   ].filter(([, v]) => v);
@@ -60,16 +61,20 @@
   });
 
   // ── Cost simulator ──
-  const total = (B.loyerMensuelHC || 0) + (B.chargesMensuelles || 0);
+  const total = B.loyerMensuelCC || 0;
   if (!total) {
     $("[data-simu]").remove();
     document.querySelector(".local-grid").style.gridTemplateColumns = "1fr";
   } else {
     const range = $("#simu-n");
-    range.value = Math.max(2, Math.min(8, objectif));
+    range.value = Math.max(2, Math.min(Number(range.max), objectif));
     const upd = () => {
-      $("[data-simu-n]").textContent = range.value;
-      $("[data-simu-result]").textContent = euros(total / Number(range.value));
+      const n = Number(range.value);
+      $("[data-simu-n]").textContent = n;
+      $("[data-simu-result]").textContent = euros(total / n);
+      $("[data-simu-m2]").textContent = B.surfaceM2
+        ? `Soit environ ${euros(B.surfaceM2 / n)} m² par personne, espaces communs compris.`
+        : "";
     };
     range.addEventListener("input", upd);
     upd();
@@ -85,12 +90,14 @@
     if (m.jours && m.jours.length) card.append(el("p", { class: "days" }, "Présence : " + m.jours.join(", ")));
     members.append(card);
   });
-  for (let i = groupe.length; i < Math.max(objectif, groupe.length + 1); i++) {
-    const open = el("a", { class: "member open", href: "#rejoindre" });
-    open.append(el("span", {}, "Place disponible\n"), el("strong", {}, "Et si c'était vous ?"));
-    open.style.whiteSpace = "pre-line";
-    members.append(open);
-  }
+  const libres = Math.max(1, objectif - groupe.length);
+  const open = el("a", { class: "member open", href: "#rejoindre" });
+  open.append(
+    el("span", {}, `${libres} place${libres > 1 ? "s" : ""} disponible${libres > 1 ? "s" : ""}\n`),
+    el("strong", {}, "Et si c'était vous ?")
+  );
+  open.style.whiteSpace = "pre-line";
+  members.append(open);
 
   // ── Service tally ──
   const counts = {};
@@ -120,6 +127,7 @@
     C.services.filter((s) => s.cat === cat).forEach((s) => {
       const lab = el("label", { class: "service" });
       lab.append(el("input", { type: "checkbox", name: "services", value: s.id }), el("span", {}, s.label));
+      if (s.surPlace) lab.append(el("em", { class: "tag" }, "déjà sur place"));
       list.append(lab);
     });
     box.append(list);

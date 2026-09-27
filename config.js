@@ -8,24 +8,28 @@
 window.SITE_CONFIG = {
   // ── Le bureau ────────────────────────────────────────────────
   bureau: {
-    titre: "Espace bureau à partager — Beaulieu, Chamalières",
-    quartier: "Quartier Beaulieu, Chamalières (63400)",
-    adresse: null,                 // ex. "12 avenue de …, 63400 Chamalières" (null = masqué)
-    surfaceM2: null,               // ex. 85
-    nombreBureaux: null,           // ex. 3 (nombre de pièces pouvant servir de cabinet)
-    loyerMensuelHC: null,          // loyer total hors charges, en €/mois, ex. 1200
-    chargesMensuelles: null,       // en €/mois, ex. 150
+    titre: "Plateau de bureaux de 403 m² à partager — Espace Beaulieu, Chamalières",
+    quartier: "Espace Beaulieu · Chamalières (63400)",
+    adresse: null,                 // ex. "…, 63400 Chamalières" (null = masqué)
+    surfaceM2: 403,
+    etage: "4e étage, immeuble tertiaire",
+    nombreBureaux: null,           // l'annonce indique « nombreux bureaux indépendants » : précisez le nombre si vous le connaissez
+    loyerMensuelCC: 4880,          // loyer total charges comprises, TTC, en €/mois
+    chargesDetail: "Taxe foncière, charges générales et eau comprises",
+    parking: "Plusieurs places privatives",
     disponibilite: "Immédiate",
     annonceUrl: "https://www.seloger.com/annonce/location/auvergne-rhone-alpes/puy-de-dome-63/chamalieres-63400/26QAAUILJ1GW",
     atouts: [
-      // Remplacez / complétez avec les vrais atouts du local
-      "Quartier résidentiel recherché, à deux pas de Clermont-Ferrand",
-      "Local adapté à l'accueil de patientèle ou de clientèle",
-      "Possibilité de répartir les pièces entre plusieurs praticiens",
+      "Au sein de l'Espace Beaulieu, à proximité immédiate de Clermont-Ferrand, des principaux axes et des transports",
+      "Nombreux bureaux indépendants, déjà cloisonnés : chacun son cabinet",
+      "Espace accueil, salle de réunion, local serveur, archives et sanitaires déjà en place",
+      "Plateau modulable, facilement réorganisable ou divisible en plusieurs lots",
+      "Plusieurs places de parking privatives, pour les praticiens comme pour la clientèle",
+      "Charges comprises : taxe foncière, charges générales et consommation d'eau",
     ],
     photos: [
       // Déposez vos photos dans le dossier assets/ puis listez-les ici :
-      // { src: "assets/salle-attente.jpg", legende: "Salle d'attente" },
+      // { src: "assets/accueil.jpg", legende: "Espace accueil" },
     ],
   },
 
@@ -41,8 +45,8 @@ window.SITE_CONFIG = {
   formEndpoint: null,
 
   // ── Le groupe en formation ───────────────────────────────────
-  // Nombre de professionnels visé pour occuper le local.
-  objectifGroupe: 4,
+  // Nombre de professionnels visé pour occuper le plateau (≈ un par bureau).
+  objectifGroupe: 10,
   // Mettez à jour cette liste à chaque nouvelle personne intéressée
   // (uniquement si elle a accepté d'apparaître, sans nom de famille).
   groupe: [
@@ -52,29 +56,30 @@ window.SITE_CONFIG = {
   ],
 
   // ── Services communs proposés au choix ───────────────────────
+  // surPlace: true → l'espace existe déjà dans le local (affiché « déjà sur place »)
   services: [
     { id: "accueil",     label: "Accueil / secrétariat partagé",         cat: "Accueil" },
-    { id: "attente",     label: "Salle d'attente commune",               cat: "Accueil" },
+    { id: "attente",     label: "Salle d'attente commune",               cat: "Accueil", surPlace: true },
     { id: "rdv",         label: "Logiciel de prise de rendez-vous commun", cat: "Accueil" },
     { id: "standard",    label: "Permanence téléphonique",               cat: "Accueil" },
-    { id: "internet",    label: "Internet fibre & Wi-Fi",                cat: "Équipements" },
+    { id: "internet",    label: "Internet fibre & Wi-Fi (local serveur)", cat: "Équipements" },
     { id: "imprimante",  label: "Imprimante / scanner",                  cat: "Équipements" },
-    { id: "reunion",     label: "Salle de réunion / atelier de groupe",  cat: "Équipements" },
+    { id: "reunion",     label: "Salle de réunion / atelier de groupe",  cat: "Équipements", surPlace: true },
     { id: "cuisine",     label: "Coin cuisine / espace pause",           cat: "Équipements" },
-    { id: "archives",    label: "Rangement / archives sécurisées",       cat: "Équipements" },
+    { id: "archives",    label: "Rangement / archives sécurisées",       cat: "Équipements", surPlace: true },
     { id: "menage",      label: "Ménage régulier",                       cat: "Entretien" },
     { id: "alarme",      label: "Alarme / sécurité",                     cat: "Entretien" },
     { id: "linge",       label: "Linge & consommables (draps d'examen…)", cat: "Entretien" },
     { id: "domiciliation", label: "Domiciliation professionnelle",       cat: "Administratif" },
     { id: "assurance",   label: "Assurance locaux mutualisée",           cat: "Administratif" },
     { id: "communication", label: "Plaque, site web & communication commune", cat: "Administratif" },
-    { id: "parking",     label: "Place(s) de stationnement",             cat: "Administratif" },
+    { id: "parking",     label: "Place de parking privative",            cat: "Administratif", surPlace: true },
   ],
 
   professions: [
     "Psychologue", "Psychothérapeute", "Coach", "Ostéopathe", "Kinésithérapeute",
     "Orthophoniste", "Sophrologue", "Diététicien·ne", "Infirmier·ère", "Sage-femme",
     "Médecin", "Podologue", "Avocat·e", "Expert-comptable", "Architecte",
-    "Consultant·e", "Traducteur·rice", "Autre",
+    "Consultant·e", "Formateur·rice", "Traducteur·rice", "Autre",
   ],
 };

@@ -129,6 +129,7 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); ou
 .service-cat h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 8px; }
 .service-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .service { display: flex !important; gap: 10px; align-items: center; margin: 0 !important; padding: 10px 12px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; cursor: pointer; font-weight: 400 !important; }
+.service .tag { margin-left: auto; font-style: normal; font-size: .72rem; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: .1em .6em; border-radius: 99px; white-space: nowrap; }
 .service:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
 .service input, .check input { accent-color: var(--accent); width: 18px; height: 18px; flex: none; margin: 0; }
 .check { display: flex !important; gap: 10px; align-items: flex-start; font-weight: 400 !important; }
